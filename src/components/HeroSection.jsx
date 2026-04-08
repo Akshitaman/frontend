@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section
       id="philosophy"
-      className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-16 md:pb-20 px-6 overflow-hidden"
       style={{
         backgroundImage:
           "linear-gradient(rgba(249, 249, 247, 0.6), rgba(249, 249, 247, 0.95)), url('/hero_bg.png')",

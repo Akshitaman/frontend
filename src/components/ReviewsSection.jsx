@@ -54,7 +54,7 @@ export default function ReviewsSection() {
   };
 
   return (
-    <section className="py-32 bg-[#f0ece6] overflow-x-hidden max-w-[100vw]" id="reviews">
+    <section className="py-20 md:py-32 bg-[#f0ece6] overflow-x-hidden max-w-[100vw]" id="reviews">
       <div className="max-w-[1400px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-end gap-8 px-6 md:px-12">
         {/* Left */}
         <div>

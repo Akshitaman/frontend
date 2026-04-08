@@ -1,16 +1,25 @@
 export default function Footer() {
   return (
-    <footer className="w-full rounded-t-[3rem] mt-20 bg-[#f3f4f2]">
+    <footer className="w-full bg-[#f3f4f2]">
       {/* Main footer content — 3 columns */}
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+      <div className="w-full px-6 md:px-16 py-12 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
         {/* Column 1: Brand */}
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="material-symbols-outlined text-[#475ba2]">school</span>
-            <span className="text-xl font-bold text-slate-800">Shaharyar Classes</span>
+            <span className="flex items-center gap-2 text-xl font-bold text-slate-800">
+              <span>Shaharyar</span>
+              <span>Classes</span>
+            </span>
           </div>
-          <p className="text-sm text-slate-500 leading-relaxed">
+          <p className="text-sm text-slate-500 leading-relaxed mb-3">
             Expert coaching for Class 5–12 students. Building bright futures since 2020.
+          </p>
+          <p className="text-sm text-slate-500 leading-relaxed mb-3">
+            At Shaharyar Classes, we believe every student has the potential to excel. Our experienced educators provide personalised attention, concept-first teaching, and regular assessments to ensure each child grows with confidence.
+          </p>
+          <p className="text-sm text-slate-500 leading-relaxed">
+            Covering foundational subjects for Classes 5–10 and specialised Science &amp; Commerce streams for Classes 11–12, we prepare students not just for exams but for lifelong learning.
           </p>
         </div>
 

@@ -19,9 +19,11 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav shadow-sm">
       {/* Top bar */}
-      <div className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto">
-        <span className="text-2xl font-extrabold text-[#475ba2] tracking-tighter">
-          Shaharyar Classes
+      <div className="flex justify-between items-center px-6 md:px-10 py-4 w-full">
+        <span className="flex items-center gap-2 text-2xl font-extrabold text-[#475ba2]">
+          <span className="material-symbols-outlined text-[1.5rem]">school</span>
+          <span>Shaharyar</span>
+          <span>Classes</span>
         </span>
 
         {/* Desktop links */}
@@ -30,14 +32,14 @@ export default function Navbar() {
             <button
               key={label}
               onClick={() => handleNav(target)}
-              className="text-slate-600 hover:text-[#475ba2] transition-colors bg-transparent border-none cursor-pointer text-base"
+              className="nav-link text-slate-600 bg-transparent border-none cursor-pointer text-base"
             >
               {label}
             </button>
           ))}
           <button
             onClick={() => handleNav('#contact')}
-            className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-3 rounded-full font-bold hover:opacity-90 transition-all active:scale-95"
+            className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 active:scale-95"
           >
             Enrol Now
           </button>

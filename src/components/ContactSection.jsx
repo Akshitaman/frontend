@@ -68,6 +68,7 @@ export default function ContactSection() {
   const [studentName, setStudentName]       = useState('');
   const [studentClass, setStudentClass]     = useState('');
   const [studentSubject, setStudentSubject] = useState('');
+  const [phoneNumber, setPhoneNumber]       = useState('');
   const [userMessage, setUserMessage]       = useState('');
 
   const [classOpen, setClassOpen]     = useState(false);
@@ -86,32 +87,33 @@ export default function ContactSection() {
       `*Student Name:* ${studentName}\n` +
       `*Class:* ${studentClass}\n` +
       `*Subject:* ${studentSubject}\n` +
+      `*Phone:* ${phoneNumber}\n` +
       (userMessage ? `\n*Message:*\n${userMessage}` : '');
 
     window.open(`https://wa.me/919801955373?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   const inputClass =
-    'w-full px-6 py-4 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all';
+    'w-full px-5 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all';
   const labelClass = 'text-sm font-bold text-on-surface-variant px-2';
 
   return (
-    <section className="px-6 py-24 bg-[#FBEFEF]" id="contact">
+    <section className="px-6 py-10 md:py-14 bg-[#FBEFEF]" id="contact">
       <div
-        className="max-w-3xl mx-auto clay-card p-10 md:p-16 rounded-xl"
+        className="max-w-3xl mx-auto clay-card p-6 md:p-10 rounded-xl"
         style={{
           boxShadow:
             '0 8px 30px rgba(47, 51, 50, 0.08), 0 30px 80px rgba(71, 91, 162, 0.13), inset 2px 2px 4px rgba(255,255,255,1), inset -4px -4px 8px rgba(47,51,50,0.04)',
         }}
       >
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold mb-4">Start Your Excellence Journey</h2>
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-extrabold mb-2">Start Your Excellence Journey</h2>
           <p className="text-on-surface-variant">
             Fill out the form below and our educational consultants will contact you shortly.
           </p>
         </div>
 
-        <form id="demo-form" className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+        <form id="demo-form" className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
 
           {/* Student Name — full width */}
           <div className="md:col-span-2 space-y-2">
@@ -143,13 +145,23 @@ export default function ContactSection() {
             />
           </div>
 
+          {/* Phone Number — required */}
+          <div className="md:col-span-2 space-y-2">
+            <label className={labelClass}>Phone Number *</label>
+            <input
+              id="phone-number" required className={inputClass}
+              placeholder="+91 98XXXXXXXX" type="tel"
+              value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
+
           {/* Message — full width */}
           <div className="md:col-span-2 space-y-2">
             <label className={labelClass}>Message (Optional)</label>
             <textarea
               id="user-message" className={inputClass}
               placeholder="Any specific requirements or preferred timings..."
-              rows="4"
+              rows="3"
               value={userMessage} onChange={(e) => setUserMessage(e.target.value)}
             />
           </div>
@@ -158,12 +170,12 @@ export default function ContactSection() {
           <div className="md:col-span-2 mt-2">
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 bg-gradient-to-br from-primary to-primary-container text-on-primary py-5 rounded-full text-lg font-bold shadow-xl shadow-primary/20 hover:opacity-90 transition-all"
+              className="w-full flex items-center justify-center gap-3 bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 rounded-full text-base font-bold shadow-xl shadow-primary/20 hover:opacity-90 transition-all"
             >
               <span className="material-symbols-outlined text-[1.25rem]">send</span>
               Book Free Demo Class
             </button>
-            <p className="text-center text-sm text-on-surface-variant mt-5">
+            <p className="text-center text-sm text-on-surface-variant mt-3">
               We respect your privacy. Your details will not be shared.
             </p>
           </div>

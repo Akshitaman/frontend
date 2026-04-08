@@ -21,7 +21,7 @@ const advantages = [
 
 export default function AdvantagesSection() {
   return (
-    <section className="py-24 px-6 bg-[#FBEFEF]" id="advantages">
+    <section className="py-20 md:py-24 px-6 bg-[#FBEFEF]" id="advantages">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <span className="label-md text-tertiary tracking-[0.1em] font-bold uppercase mb-4 block">

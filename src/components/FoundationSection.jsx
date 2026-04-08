@@ -31,7 +31,7 @@ const subjects = [
 
 export default function FoundationSection() {
   return (
-    <section className="py-32 px-6 bg-[#FBEFEF]" id="subjects">
+    <section className="py-20 md:py-32 px-6 bg-[#FBEFEF]" id="subjects">
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
           <span className="label-md text-tertiary tracking-[0.1em] font-bold uppercase mb-4 block">

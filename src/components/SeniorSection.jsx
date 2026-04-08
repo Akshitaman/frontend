@@ -62,7 +62,7 @@ function StreamCard({ icon, bg, iconColor, title, desc }) {
 
 export default function SeniorSection() {
   return (
-    <section className="py-32 px-6 bg-surface">
+    <section className="py-20 md:py-32 px-6 bg-surface">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           {/* Science Stream */}

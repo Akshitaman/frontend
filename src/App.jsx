@@ -131,12 +131,29 @@ export default function App() {
       );
     });
 
-    // Form fade-in
-    gsap.fromTo('form',
-      { y: 40, opacity: 0 },
+    // Contact section — entire card fades + slides up at once
+    gsap.fromTo('#contact .clay-card',
+      { y: 60, opacity: 0 },
       {
-        y: 0, opacity: 1, duration: 1,
-        scrollTrigger: { trigger: 'form', start: 'top 85%', toggleActions: 'play none none none' },
+        y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#contact',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+
+    // Footer — fades + slides up at once
+    gsap.fromTo('footer',
+      { y: 50, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: 'footer',
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+        },
       }
     );
 
