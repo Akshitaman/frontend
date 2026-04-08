@@ -1,6 +1,9 @@
+import { scrollTo } from '../utils/lenisInstance';
+
 export default function HeroSection() {
   return (
     <section
+      id="philosophy"
       className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden"
       style={{
         backgroundImage:
@@ -26,7 +29,10 @@ export default function HeroSection() {
             Join Bihar's most result-driven tuition — online &amp; offline.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 mb-14">
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-full text-lg font-bold shadow-xl shadow-primary/20 hover:opacity-90 transition-all active:scale-95">
+            <button
+              onClick={() => scrollTo('#contact')}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-full text-lg font-bold shadow-xl shadow-primary/20 hover:opacity-90 transition-all active:scale-95"
+            >
               Book Free Demo{' '}
               <span className="material-symbols-outlined text-[1.25rem]">arrow_forward</span>
             </button>

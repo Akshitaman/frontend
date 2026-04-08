@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { setLenis } from './utils/lenisInstance';
 
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -24,6 +25,7 @@ export default function App() {
       smooth: true,
       smoothTouch: false,
     });
+    setLenis(lenis); // register globally
 
     function raf(time) {
       lenis.raf(time);
@@ -35,14 +37,6 @@ export default function App() {
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
 
-    // Navbar slide in
-    gsap.from('.glass-nav', {
-      y: -100,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.2,
-    });
 
     // Hero Text Reveal
     const heroText = document.querySelector('.hero-reveal');
