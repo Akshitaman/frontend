@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f9f9f7;
+  color: #2f3332;
+}
+
+/* Clay Card */
+.clay-card {
+  background: #ffffff;
+  box-shadow: 20px 20px 40px rgba(47, 51, 50, 0.04),
+    inset 2px 2px 4px rgba(255, 255, 255, 1),
+    inset -4px -4px 8px rgba(47, 51, 50, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clay-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 30px 30px 60px rgba(47, 51, 50, 0.06),
+    inset 2px 2px 4px rgba(255, 255, 255, 1);
+}
+
+.clay-icon {
+  box-shadow: 10px 10px 20px rgba(47, 51, 50, 0.05),
+    inset 4px 4px 6px rgba(255, 255, 255, 0.8),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Glass Nav */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+}
+
+/* Hero gradient text */
+.hero-reveal {
+  background: linear-gradient(135deg, #475ba2 0%, #94a8f5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Advantages Section */
+.advantage-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.4;
+  margin-top: 32px;
+}
+
+.oval-container {
+  width: 260px;
+  height: 220px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  box-shadow: none;
+}
+
+.oval-img {
+  position: absolute;
+  bottom: 0;
+  width: 280px;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  transform: translateY(-20px);
+  z-index: 10;
+}
+
+/* Marquee */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.marquee-nudge-wrapper {
+  display: flex;
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.marquee-content {
+  display: flex;
+  gap: 14px;
+  padding-left: 14px;
+  animation: marquee-scroll 22s linear infinite;
+  will-change: transform;
+}
+
+@media (pointer: fine) {
+  .marquee-content:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.review-card {
+  flex-shrink: 0;
+  width: 280px;
+  background-color: #eeebe6;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-author {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .marquee-container {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+  .marquee-content {
+    gap: 2rem;
+    padding-left: 2rem;
+    animation-duration: 40s;
+  }
+  .review-card {
+    width: 320px;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .review-card {
+    width: 370px;
+  }
+}
