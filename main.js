@@ -87,10 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
-    // Hero Abstract 3D clay shapes float
-    gsap.to(".absolute.blur-3xl", {
+    // Hero Abstract 3D clay shapes float — targets ONLY .hero-blob, NOT the bg image
+    gsap.to(".hero-blob", {
         y: -50,
-        rotation: 15,
         ease: "none",
         scrollTrigger: {
             trigger: "section.min-h-screen",

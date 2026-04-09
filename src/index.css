@@ -35,12 +35,23 @@ body {
   backdrop-filter: blur(20px);
 }
 
-/* Hero gradient text */
+/* Hero background — hard locked against GSAP rotation/transform bleed */
+#philosophy > div:first-child,
+#philosophy > div:first-child img {
+  transform: none !important;
+  rotate: none !important;
+  will-change: auto !important;
+}
+
+/* Glass Panel — used in hero stats bar & buttons */
+.glass-panel {
+  background: rgba(255, 248, 242, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Hero reveal - kept for GSAP animation trigger only */
 .hero-reveal {
-  background: linear-gradient(135deg, #475ba2 0%, #94a8f5 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* Hide scrollbars */
@@ -91,14 +102,14 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #3d52d5, #6d80f0);
+  background: #924a28;
   border-radius: 99px;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.25s ease;
 }
 .nav-link:hover {
-  color: #3d52d5;
+  color: #924a28 !important;
 }
 .nav-link:hover::after {
   transform: scaleX(1);

@@ -81,10 +81,9 @@ export default function App() {
       }
     );
 
-    // Floating clay shapes parallax
-    gsap.to('.absolute.blur-3xl', {
+    // Floating clay shapes parallax — target ONLY the blob elements, not the bg image
+    gsap.to('.hero-blob', {
       y: -50,
-      rotation: 15,
       ease: 'none',
       scrollTrigger: {
         trigger: 'section.min-h-screen',

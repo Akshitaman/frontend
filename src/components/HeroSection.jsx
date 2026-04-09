@@ -4,67 +4,79 @@ export default function HeroSection() {
   return (
     <section
       id="philosophy"
-      className="relative min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-16 md:pb-20 px-6 overflow-hidden"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(249, 249, 247, 0.6), rgba(249, 249, 247, 0.95)), url('/hero_bg.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '0 0 2rem 2rem',
-        boxShadow: 'inset 0 -20px 40px rgba(249, 249, 247, 1)',
-      }}
+      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden"
     >
-      {/* Floating clay blobs */}
-      <div className="absolute top-1/4 -left-20 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary-container/20 rounded-full blur-3xl" />
+      {/* Background Image with Overlay — style locks prevent GSAP transform bleed */}
+      <div className="absolute inset-0 z-0" style={{ transform: 'none', willChange: 'auto' }}>
+        <img
+          className="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZsdu5tKjla7Gzn6ySsak5g0dCDwH14P5m5AJHQPtqNQ-SQIreRl296Mkjz4Wn55OKAVExZXrCrcCKSi3kJskADwhYr2EFS74V5UYJJOwlmwe0ZTdnerYAUqX9oHAUgLavRuc9qbOB1nJBiG2bpKrOfAcrmYNM9ouDzTSNro25vHUivFVwcgbh8jm4zZaA6n5bknyWeW9m5PiYJYMPlLPCB_SH75WNiUumBqjbVfpSL0e9x7csZMQn-630Z7RyTA0nyewwF0vw5OGI"
+          alt="A modern, warm and inspiring study environment"
+        />
+        <div className="absolute inset-0 bg-stone-900/40 backdrop-brightness-75" />
+      </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Left: Text */}
-        <div className="flex-1 text-left">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight hero-reveal leading-[1.1] mb-8">
-            Unlock Your Academic Potential
+      {/* Floating clay blobs — .hero-blob is targeted by GSAP parallax only */}
+      <div className="hero-blob absolute top-1/4 -left-20 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl" />
+      <div className="hero-blob absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary-container/20 rounded-full blur-3xl" />
+
+      {/* Content Container */}
+      <div className="relative z-10 w-full max-w-6xl px-6 pt-24 text-center md:text-left">
+        <div className="max-w-3xl">
+
+          {/* Badge */}
+          <div className="inline-flex items-center bg-surface-container-low/30 backdrop-blur-md px-4 py-1.5 rounded-full mb-8 border border-white/10">
+            <span className="text-[#ffdbcd] font-semibold tracking-widest text-[10px] uppercase">
+              Elite Academic Mentorship
+            </span>
+          </div>
+
+          {/* Heading — hero-reveal class required for GSAP word-split animation */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#fff8f2] leading-[1.1] tracking-tight mb-8 hero-reveal">
+            Unleash Your Potential <span className="text-[#ffdbcd]">through Energy.</span>
           </h1>
-          <p className="text-on-surface-variant text-lg md:text-xl max-w-xl mb-12 leading-relaxed">
-            Expert coaching for Class 5–12 students across CBSE, ICSE &amp; State boards.
-            Join Bihar's most result-driven tuition — online &amp; offline.
+
+          {/* Paragraph — animated by GSAP via ".hero-reveal ~ p" */}
+          <p className="text-lg md:text-xl text-[#fbf2e8]/90 max-w-xl mb-12 leading-relaxed">
+            A refined coaching experience for Classes 5–10, focusing on the synergy of academics and personal growth.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 mb-14">
+
+          {/* Buttons — animated by GSAP via ".hero-reveal ~ div button" */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button
               onClick={() => scrollTo('#contact')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-full text-lg font-bold shadow-xl shadow-primary/20 hover:opacity-90 transition-all active:scale-95"
+              className="bg-[#924a28] text-[#ffffff] px-10 py-5 rounded-full font-bold text-lg hover:opacity-90 transition-all hover:scale-105 shadow-xl shadow-[#924a28]/20"
             >
-              Book Free Demo{' '}
-              <span className="material-symbols-outlined text-[1.25rem]">arrow_forward</span>
+              Book Free Demo
             </button>
-            <button className="w-full sm:w-auto bg-surface-container-highest border border-surface-container-highest text-on-surface px-10 py-5 rounded-full text-lg font-bold hover:bg-surface-container-high transition-all">
-              Explore Programs
+            <button
+              onClick={() => scrollTo('#subjects')}
+              className="glass-panel text-[#1e1b15] px-10 py-5 rounded-full font-bold text-lg hover:bg-surface-container-high transition-all hover:scale-105 border border-white/20"
+            >
+              View Courses
             </button>
           </div>
 
-          {/* Stats row */}
-          <div className="flex flex-wrap gap-12 sm:gap-20 pt-10 border-t border-surface-container-highest/60 w-max">
-            <div className="text-left">
-              <h3 className="text-4xl md:text-5xl font-extrabold hero-reveal mb-2">6+</h3>
-              <p className="text-sm font-semibold text-on-surface-variant">Years Exp.</p>
-            </div>
-            <div className="text-left">
-              <h3 className="text-4xl md:text-5xl font-extrabold hero-reveal mb-2">5+</h3>
-              <p className="text-sm font-semibold text-on-surface-variant">Expert Tutors</p>
-            </div>
-            <div className="text-left">
-              <h3 className="text-4xl md:text-5xl font-extrabold hero-reveal mb-2">95%</h3>
-              <p className="text-sm font-semibold text-on-surface-variant">Pass Rate</p>
-            </div>
-          </div>
         </div>
+      </div>
 
-        {/* Right: Image */}
-        <div className="flex-1 w-full relative">
-          <img
-            src="/student_hero.png"
-            alt="Student showing academic excellence"
-            className="w-full h-auto object-contain drop-shadow-2xl max-w-[600px] mx-auto lg:ml-auto"
-          />
+      {/* Stats Bar */}
+      <div className="relative z-10 mt-auto mb-12 w-full max-w-5xl px-6">
+        <div className="glass-panel rounded-xl p-8 md:p-10 flex flex-wrap justify-center md:justify-between items-center gap-8 shadow-2xl">
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">10k+</span>
+            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Active Students</span>
+          </div>
+          <div className="hidden md:block w-px h-12 bg-outline-variant/30" />
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">98%</span>
+            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Success Rate</span>
+          </div>
+          <div className="hidden md:block w-px h-12 bg-outline-variant/30" />
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">4.9/5</span>
+            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Parent Rating</span>
+          </div>
         </div>
       </div>
     </section>

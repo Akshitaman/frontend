@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { scrollTo } from '../utils/lenisInstance';
 
 const navLinks = [
-  { label: 'Home',       target: '#philosophy' },
-  { label: 'Subjects',   target: '#subjects'   },
-  { label: 'Advantages', target: '#advantages' },
-  { label: 'Contact',    target: '#contact'    },
+  { label: 'Home',      target: '#philosophy' },
+  { label: 'Subject',   target: '#subjects'   },
+  { label: 'Advantage', target: '#advantages' },
+  { label: 'Contact',   target: '#contact'    },
 ];
 
 export default function Navbar() {
@@ -17,29 +17,38 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass-nav shadow-sm">
+    <nav className="fixed top-0 w-full z-50 glass-nav shadow-[0px_12px_32px_rgba(30,27,21,0.06)]">
       {/* Top bar */}
-      <div className="flex justify-between items-center px-6 md:px-10 py-4 w-full">
-        <span className="flex items-center gap-2 text-2xl font-extrabold text-[#475ba2]">
-          <span className="material-symbols-outlined text-[1.5rem]">school</span>
-          <span>Shaharyar</span>
-          <span>Classes</span>
-        </span>
+      <div className="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto tracking-tight leading-relaxed">
+
+        {/* Logo */}
+        <div className="text-2xl font-bold tracking-tighter text-orange-950">
+          <div className="flex items-center gap-2">
+            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3L1 9l11 6l9-4.91V17h2V9L12 3zM3.89 9L12 4.57L20.11 9L12 13.43L3.89 9zM12 15.5l-7 3.82V21l7 3.82l7-3.82v-1.68l-7-3.82z" />
+            </svg>
+            <span>Shaharyar Classes</span>
+          </div>
+        </div>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map(({ label, target }) => (
+        <div className="hidden md:flex items-center gap-8 ml-auto">
+          {navLinks.map(({ label, target }, i) => (
             <button
               key={label}
               onClick={() => handleNav(target)}
-              className="nav-link text-slate-600 bg-transparent border-none cursor-pointer text-base"
+              className={`nav-link bg-transparent border-none cursor-pointer text-base transition-colors duration-300 ${
+                i === 0
+                  ? 'text-[#924a28] font-semibold border-b-2 border-[#924a28] pb-1'
+                  : 'text-slate-600 hover:text-[#924a28]'
+              }`}
             >
               {label}
             </button>
           ))}
           <button
             onClick={() => handleNav('#contact')}
-            className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 active:scale-95"
+            className="bg-[#924a28] text-[#ffffff] px-8 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#924a28]/30 active:scale-95"
           >
             Enrol Now
           </button>
@@ -68,14 +77,14 @@ export default function Navbar() {
             <button
               key={label}
               onClick={() => handleNav(target)}
-              className="text-slate-600 hover:text-[#475ba2] transition-colors bg-transparent border-none cursor-pointer text-base text-left py-3 border-b border-surface-container-highest/20 last:border-none"
+              className="text-slate-600 hover:text-[#924a28] transition-colors bg-transparent border-none cursor-pointer text-base text-left py-3 border-b border-surface-container-highest/20 last:border-none"
             >
               {label}
             </button>
           ))}
           <button
             onClick={() => handleNav('#contact')}
-            className="mt-3 bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-3 rounded-full font-bold hover:opacity-90 transition-all active:scale-95 text-center"
+            className="mt-3 bg-[#924a28] text-[#ffffff] px-8 py-3 rounded-full font-bold hover:opacity-90 transition-all active:scale-95 text-center"
           >
             Enrol Now
           </button>
