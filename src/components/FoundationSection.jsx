@@ -169,8 +169,6 @@ function TopicsModal({ modalKey, onClose }) {
 }
 
 export default function FoundationSection() {
-  const [activeModal, setActiveModal] = useState(null);
-
   return (
     <>
       <section className="py-20 md:py-32 px-6 bg-[#FBEFEF]" id="subjects">
@@ -187,22 +185,14 @@ export default function FoundationSection() {
             {subjects.map((s) => (
               <div 
                 key={s.title} 
-                className="group w-full"
-                style={{ perspective: '1000px' }}
+                className="flip-card w-full overflow-visible"
               >
                 <div 
-                  className="relative w-full h-[380px] transition-transform duration-700 ease-in-out"
-                  style={{ transformStyle: 'preserve-3d' }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.animation = 'flipHover 0.8s forwards ease-in-out';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.animation = 'flipLeave 0.8s forwards ease-in-out';
-                  }}
+                  className="flip-animate relative w-full h-[420px]"
                 >
                   {/* Front */}
                   <div 
-                    className="absolute inset-0 clay-card p-10 rounded-xl flex flex-col items-start backface-hidden"
+                    className="absolute inset-0 clay-card p-10 pb-14 rounded-xl flex flex-col items-start backface-hidden"
                     style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                   >
                     <div className={`w-16 h-16 rounded-lg ${s.bgClass} mb-8 flex items-center justify-center clay-icon`}>
@@ -214,14 +204,14 @@ export default function FoundationSection() {
 
                   {/* Back */}
                   <div 
-                    className="absolute inset-0 clay-card p-6 rounded-xl flex flex-col backface-hidden"
+                    className="absolute inset-0 clay-card p-10 pb-14 rounded-xl flex flex-col items-start backface-hidden"
                     style={{ 
                       backfaceVisibility: 'hidden', 
                       WebkitBackfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <h3 className="text-xl font-bold text-on-surface mb-4 border-b pb-2">{s.title} Topics</h3>
+                    <h3 className="text-xl font-bold text-on-surface mb-4 border-b pb-2 w-full">{s.title} Topics</h3>
                     <ul 
                       className="space-y-2 overflow-y-auto pr-2 custom-scrollbar flex-1"
                       data-lenis-prevent

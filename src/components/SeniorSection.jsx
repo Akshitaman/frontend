@@ -109,49 +109,37 @@ const commerceSubjects = [
 
 function StreamCard({ icon, bg, iconColor, title, desc, topics }) {
   return (
-    <div className="group w-full h-[320px]" style={{ perspective: '1000px' }}>
-      <div 
-        className="relative w-full h-full transition-transform duration-700 h-full"
-        style={{ transformStyle: 'preserve-3d' }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.animation = 'flipHover 0.8s forwards ease-in-out';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.animation = 'flipLeave 0.8s forwards ease-in-out';
-        }}
-      >
+    <div className="flip-card w-full h-[420px] overflow-visible">
+      <div className="flip-animate relative w-full h-full">
         {/* Front */}
         <div 
-          className="absolute inset-0 bg-surface-container-low p-6 rounded-2xl flex flex-col items-center text-center clay-card transition-colors hover:bg-surface-container-high backface-hidden"
+          className="absolute inset-0 clay-card p-10 pb-14 rounded-xl flex flex-col items-start backface-hidden"
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
-          <div className={`w-14 h-14 shrink-0 ${bg} rounded-lg flex items-center justify-center clay-icon mb-6`}>
-            <span className={`material-symbols-outlined ${iconColor} text-2xl`}>{icon}</span>
+          <div className={`w-16 h-16 rounded-lg ${bg} mb-8 flex items-center justify-center clay-icon`}>
+            <span className={`material-symbols-outlined ${iconColor} text-3xl`}>{icon}</span>
           </div>
-          <h4 className="text-xl font-extrabold mb-3">{title}</h4>
-          <p className="text-sm text-on-surface-variant leading-relaxed">{desc}</p>
-          <div className="mt-auto pt-4 text-tertiary font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-            View Topics <span className="material-symbols-outlined text-sm">rotate_right</span>
-          </div>
+          <h3 className="text-2xl font-bold mb-4">{title}</h3>
+          <p className="text-on-surface-variant leading-relaxed flex-1">{desc}</p>
         </div>
 
         {/* Back */}
         <div 
-          className="absolute inset-0 bg-surface-container-low p-6 rounded-2xl flex flex-col items-start clay-card backface-hidden"
+          className="absolute inset-0 clay-card p-10 pb-14 rounded-xl flex flex-col items-start backface-hidden"
           style={{ 
             backfaceVisibility: 'hidden', 
             WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)'
           }}
         >
-          <h4 className="text-lg font-extrabold mb-4 border-b border-primary/10 w-full pb-2">{title} Topics</h4>
+          <h3 className="text-xl font-bold text-on-surface mb-4 border-b pb-2 w-full">{title} Topics</h3>
           <ul 
-            className="space-y-2.5 overflow-y-auto w-full custom-scrollbar pr-1 flex-1"
+            className="space-y-2 overflow-y-auto w-full custom-scrollbar pr-2 flex-1"
             data-lenis-prevent
           >
             {topics.map((topic, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-xs font-medium text-on-surface-variant leading-relaxed">
-                <span className="text-tertiary font-bold mt-0.5 text-[10px]">✓</span>
+              <li key={i} className="flex items-start gap-3 text-sm text-on-surface-variant leading-relaxed">
+                <span className="text-tertiary font-bold mt-0.5 text-xs">✓</span>
                 <span>{topic}</span>
               </li>
             ))}
