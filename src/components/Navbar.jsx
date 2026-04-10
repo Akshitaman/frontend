@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav shadow-[0px_12px_32px_rgba(30,27,21,0.06)]">
       {/* Top bar */}
-      <div className="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto tracking-tight leading-relaxed">
+      <div className="flex justify-between items-center w-full px-4 md:px-10 py-5 tracking-tight leading-relaxed">
 
         {/* Logo */}
         <div className="text-2xl font-bold tracking-tighter text-orange-950">

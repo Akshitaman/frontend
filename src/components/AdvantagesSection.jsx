@@ -2,21 +2,40 @@ const advantages = [
   {
     bg: 'bg-[#f0ebff]',
     img: 'https://illustrations.popsy.co/amber/student-going-to-school.svg',
-    alt: 'Conceptual clarity',
-    title: 'Conceptual clarity through visualisation',
+    title: 'Batch Size: Only 5 Students',
+    desc: 'Maximum personal attention with just 5 students per batch — guaranteed individual focus',
   },
   {
     bg: 'bg-[#e6f2ff]',
     img: 'https://illustrations.popsy.co/amber/remote-work.svg',
-    alt: 'Personalised learning',
-    title: 'Personalised learning programs',
+    title: 'Online & Offline',
+    desc: 'Attend live classes from anywhere or visit our centre',
   },
   {
-    bg: 'bg-[#ffeef5]',
-    img: 'https://illustrations.popsy.co/amber/video-call.svg',
-    alt: 'Individual attention',
-    title: 'Unmatched individual attention',
+    bg: 'bg-[#ffdee9]',
+    img: 'https://illustrations.popsy.co/amber/surreal-hourglass.svg',
+    title: 'Proven Results',
+    desc: '95%+ students score above 90% in board exams',
   },
+  {
+    bg: 'bg-[#fff4e6]',
+    img: 'https://illustrations.popsy.co/amber/man-riding-a-rocket.svg',
+    title: 'Flexible Timings',
+    desc: 'Weekend & evening batches for working parents',
+  },
+  {
+    bg: 'bg-[#e6fffa]',
+    img: 'https://illustrations.popsy.co/amber/customer-support.svg',
+    title: 'Doubt Support 24/7',
+    desc: 'Get your doubts cleared anytime via WhatsApp chat or direct call to your teacher',
+    link: 'Ask a Doubt on WhatsApp →'
+  },
+  {
+    bg: 'bg-[#f5ffe6]',
+    img: 'https://illustrations.popsy.co/amber/presentation.svg',
+    title: 'Progress Tracking',
+    desc: 'Regular tests and detailed performance reports',
+  }
 ];
 
 export default function AdvantagesSection() {
@@ -32,13 +51,19 @@ export default function AdvantagesSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center text-center">
           {advantages.map((a) => (
             <div key={a.title} className="flex flex-col items-center">
               <div className={`oval-container ${a.bg}`}>
-                <img src={a.img} alt={a.alt} className="oval-img" />
+                <img src={a.img} alt={a.title} className="oval-img" />
               </div>
-              <h3 className="advantage-heading">{a.title}</h3>
+              <h3 className="text-xl font-bold text-[#3b2d28] mb-3 mt-6">{a.title}</h3>
+              <p className="text-[#85736c] leading-relaxed">{a.desc}</p>
+              {a.link && (
+                <a href="#" className="font-bold text-[#924a28] hover:underline mt-4 text-sm tracking-wide">
+                  {a.link}
+                </a>
+              )}
             </div>
           ))}
         </div>

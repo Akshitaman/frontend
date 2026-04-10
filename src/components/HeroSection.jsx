@@ -21,13 +21,13 @@ export default function HeroSection() {
       <div className="hero-blob absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary-container/20 rounded-full blur-3xl" />
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-6xl px-6 pt-24 text-center md:text-left">
-        <div className="max-w-3xl">
+      <div className="relative z-10 w-full max-w-6xl px-6 pt-24 flex-1 flex flex-col justify-center text-center">
+        <div className="max-w-3xl mx-auto flex flex-col items-center">
 
           {/* Badge */}
           <div className="inline-flex items-center bg-surface-container-low/30 backdrop-blur-md px-4 py-1.5 rounded-full mb-8 border border-white/10">
             <span className="text-[#ffdbcd] font-semibold tracking-widest text-[10px] uppercase">
-              Elite Academic Mentorship
+              5,000+ Active Students
             </span>
           </div>
 
@@ -37,12 +37,12 @@ export default function HeroSection() {
           </h1>
 
           {/* Paragraph — animated by GSAP via ".hero-reveal ~ p" */}
-          <p className="text-lg md:text-xl text-[#fbf2e8]/90 max-w-xl mb-12 leading-relaxed">
-            A refined coaching experience for Classes 5–10, focusing on the synergy of academics and personal growth.
+          <p className="text-lg md:text-xl text-[#fbf2e8]/90 max-w-xl mx-auto mb-12 leading-relaxed">
+            A refined coaching experience for Classes 5–12, focusing on the synergy of academics and personal growth.
           </p>
 
           {/* Buttons — animated by GSAP via ".hero-reveal ~ div button" */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollTo('#contact')}
               className="bg-[#924a28] text-[#ffffff] px-10 py-5 rounded-full font-bold text-lg hover:opacity-90 transition-all hover:scale-105 shadow-xl shadow-[#924a28]/20"
@@ -64,18 +64,18 @@ export default function HeroSection() {
       <div className="relative z-10 mt-auto mb-12 w-full max-w-5xl px-6">
         <div className="glass-panel rounded-xl p-8 md:p-10 flex flex-wrap justify-center md:justify-between items-center gap-8 shadow-2xl">
           <div className="flex flex-col items-center md:items-start">
-            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">10k+</span>
-            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Active Students</span>
+            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">6+</span>
+            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Years Exp.</span>
           </div>
           <div className="hidden md:block w-px h-12 bg-outline-variant/30" />
           <div className="flex flex-col items-center md:items-start">
-            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">98%</span>
-            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Success Rate</span>
+            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">5+</span>
+            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Expert Tutors</span>
           </div>
           <div className="hidden md:block w-px h-12 bg-outline-variant/30" />
           <div className="flex flex-col items-center md:items-start">
-            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">4.9/5</span>
-            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Parent Rating</span>
+            <span className="text-3xl font-extrabold text-[#924a28] mb-1 tracking-tighter">95%</span>
+            <span className="text-sm font-medium text-[#54433c] uppercase tracking-widest">Pass Rate</span>
           </div>
         </div>
       </div>

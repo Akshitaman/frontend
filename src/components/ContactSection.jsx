@@ -35,23 +35,23 @@ function CustomSelect({ id, placeholder, options, value, onChange, onOpenChange 
       <input type="hidden" id={id} value={value} required />
       <button
         type="button"
-        className="select-btn flex items-center justify-between w-full px-6 py-4 rounded-lg bg-surface-container-low border hover:border-primary/20 border-transparent focus:ring-2 focus:ring-primary/20 transition-all text-left group"
+        className="select-btn flex items-center justify-between w-full px-5 py-4 rounded-xl bg-[#f5ebe4]/50 hover:bg-[#f5ebe4] focus:ring-2 focus:ring-[#924a28]/30 transition-all text-left group"
         onClick={(e) => { e.stopPropagation(); setOpenState((o) => !o); }}
       >
-        <span className={value ? 'text-on-surface' : 'text-slate-500'}>
+        <span className={value ? 'text-[#3b2d28] font-medium' : 'text-[#a6968f] font-medium'}>
           {value || placeholder}
         </span>
-        <span className="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">
+        <span className="material-symbols-outlined text-[#a6968f] group-hover:text-[#924a28] transition-colors">
           {open ? 'expand_less' : 'expand_more'}
         </span>
       </button>
       {open && (
-        <div className="absolute z-50 w-full mt-2 bg-surface border border-surface-container-highest rounded-xl shadow-2xl overflow-hidden">
+        <div className="absolute z-50 w-full mt-2 bg-white border border-[#f5ebe4] rounded-xl shadow-2xl shadow-[#924a28]/10 overflow-hidden">
           <ul className="max-h-52 overflow-y-auto py-2 px-2 dropdown-scroll" data-lenis-prevent>
             {options.map((opt) => (
               <li
                 key={opt}
-                className="px-4 py-3 rounded-lg text-center hover:bg-primary/10 hover:text-primary cursor-pointer transition-colors"
+                className="px-4 py-3 rounded-lg text-center hover:bg-[#f5ebe4] hover:text-[#924a28] font-medium text-[#54433c] cursor-pointer transition-colors"
                 onClick={() => { onChange(opt); setOpenState(false); }}
               >
                 {opt}
@@ -94,21 +94,20 @@ export default function ContactSection() {
   };
 
   const inputClass =
-    'w-full px-5 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all';
-  const labelClass = 'text-sm font-bold text-on-surface-variant px-2';
+    'w-full px-5 py-4 rounded-xl bg-[#f5ebe4]/50 border-none focus:ring-2 focus:ring-[#924a28]/30 focus:bg-[#f5ebe4] transition-all text-[#3b2d28] placeholder-[#a6968f] font-medium';
+  const labelClass = 'text-sm font-bold text-[#54433c] px-2 mb-1 block';
 
   return (
     <section className="px-6 py-10 md:py-14 bg-[#FBEFEF]" id="contact">
       <div
-        className="max-w-3xl mx-auto clay-card p-6 md:p-10 rounded-xl"
+        className="max-w-3xl mx-auto p-8 md:p-12 rounded-3xl bg-white border border-[#924a28]/10"
         style={{
-          boxShadow:
-            '0 8px 30px rgba(47, 51, 50, 0.08), 0 30px 80px rgba(71, 91, 162, 0.13), inset 2px 2px 4px rgba(255,255,255,1), inset -4px -4px 8px rgba(47,51,50,0.04)',
+          boxShadow: '0 20px 40px rgba(146, 74, 40, 0.05)',
         }}
       >
-        <div className="text-center mb-6">
-          <h2 className="text-3xl font-extrabold mb-2">Start Your Excellence Journey</h2>
-          <p className="text-on-surface-variant">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-[#54433c]">Start Your Excellence Journey</h2>
+          <p className="text-[#85736c] font-medium text-lg">
             Fill out the form below and our educational consultants will contact you shortly.
           </p>
         </div>
@@ -161,21 +160,21 @@ export default function ContactSection() {
             <textarea
               id="user-message" className={inputClass}
               placeholder="Any specific requirements or preferred timings..."
-              rows="3"
+              rows="4"
               value={userMessage} onChange={(e) => setUserMessage(e.target.value)}
             />
           </div>
 
           {/* Submit */}
-          <div className="md:col-span-2 mt-2">
+          <div className="md:col-span-2 mt-4">
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 rounded-full text-base font-bold shadow-xl shadow-primary/20 hover:opacity-90 transition-all"
+              className="w-full flex items-center justify-center gap-3 bg-[#924a28] text-[#ffffff] py-4 rounded-full text-lg font-bold shadow-xl shadow-[#924a28]/20 hover:opacity-90 transition-all hover:scale-[1.02]"
             >
               <span className="material-symbols-outlined text-[1.25rem]">send</span>
               Book Free Demo Class
             </button>
-            <p className="text-center text-sm text-on-surface-variant mt-3">
+            <p className="text-center text-sm text-[#a6968f] mt-4 font-medium">
               We respect your privacy. Your details will not be shared.
             </p>
           </div>

@@ -130,6 +130,7 @@ function TopicsModal({ modalKey, onClose }) {
         className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative"
         style={{ maxHeight: '90vh', overflowY: 'auto' }}
         onClick={(e) => e.stopPropagation()}
+        data-lenis-prevent
       >
         {/* Close button */}
         <button
@@ -184,29 +185,61 @@ export default function FoundationSection() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {subjects.map((s) => (
-              <div key={s.title} className="clay-card p-10 rounded-xl group flex flex-col">
-                <div className={`w-16 h-16 rounded-lg ${s.bgClass} mb-8 flex items-center justify-center clay-icon`}>
-                  <span className={`material-symbols-outlined ${s.iconClass} text-3xl`}>{s.icon}</span>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{s.title}</h3>
-                <p className="text-on-surface-variant leading-relaxed flex-1">{s.desc}</p>
-
-                <button
-                  onClick={() => setActiveModal(s.modalKey)}
-                  className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-tertiary hover:text-on-surface transition-colors group/btn self-start"
+              <div 
+                key={s.title} 
+                className="group w-full"
+                style={{ perspective: '1000px' }}
+              >
+                <div 
+                  className="relative w-full h-[380px] transition-transform duration-700 ease-in-out"
+                  style={{ transformStyle: 'preserve-3d' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.animation = 'flipHover 0.8s forwards ease-in-out';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.animation = 'flipLeave 0.8s forwards ease-in-out';
+                  }}
                 >
-                  <span>View Topics</span>
-                  <span className="material-symbols-outlined text-base transition-transform group-hover/btn:translate-x-0.5">
-                    arrow_forward
-                  </span>
-                </button>
+                  {/* Front */}
+                  <div 
+                    className="absolute inset-0 clay-card p-10 rounded-xl flex flex-col items-start backface-hidden"
+                    style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+                  >
+                    <div className={`w-16 h-16 rounded-lg ${s.bgClass} mb-8 flex items-center justify-center clay-icon`}>
+                      <span className={`material-symbols-outlined ${s.iconClass} text-3xl`}>{s.icon}</span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">{s.title}</h3>
+                    <p className="text-on-surface-variant leading-relaxed flex-1">{s.desc}</p>
+                  </div>
+
+                  {/* Back */}
+                  <div 
+                    className="absolute inset-0 clay-card p-6 rounded-xl flex flex-col backface-hidden"
+                    style={{ 
+                      backfaceVisibility: 'hidden', 
+                      WebkitBackfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)'
+                    }}
+                  >
+                    <h3 className="text-xl font-bold text-on-surface mb-4 border-b pb-2">{s.title} Topics</h3>
+                    <ul 
+                      className="space-y-2 overflow-y-auto pr-2 custom-scrollbar flex-1"
+                      data-lenis-prevent
+                    >
+                      {modalData[s.modalKey].topics.map((topic, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-on-surface-variant">
+                          <span className="text-tertiary font-bold mt-0.5 text-xs">✓</span>
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {activeModal && <TopicsModal modalKey={activeModal} onClose={() => setActiveModal(null)} />}
     </>
   );
 }
