@@ -109,11 +109,11 @@ const commerceSubjects = [
 
 function StreamCard({ icon, bg, iconColor, title, desc, topics }) {
   return (
-    <div className="flip-card w-full h-[420px] overflow-visible">
+    <div className="flip-card subject-card w-full h-[420px] overflow-visible">
       <div className="flip-animate relative w-full h-full">
         {/* Front */}
         <div 
-          className="absolute inset-0 clay-card p-10 pb-14 rounded-xl flex flex-col items-start backface-hidden"
+          className="absolute inset-0 clay-card p-10 rounded-xl flex flex-col items-start backface-hidden overflow-hidden"
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
           <div className={`w-16 h-16 rounded-lg ${bg} mb-8 flex items-center justify-center clay-icon`}>
@@ -125,7 +125,7 @@ function StreamCard({ icon, bg, iconColor, title, desc, topics }) {
 
         {/* Back */}
         <div 
-          className="absolute inset-0 clay-card p-10 pb-14 rounded-xl flex flex-col items-start backface-hidden"
+          className="absolute inset-0 clay-card p-10 rounded-xl flex flex-col items-start backface-hidden overflow-hidden"
           style={{ 
             backfaceVisibility: 'hidden', 
             WebkitBackfaceVisibility: 'hidden',
@@ -143,6 +143,7 @@ function StreamCard({ icon, bg, iconColor, title, desc, topics }) {
                 <span>{topic}</span>
               </li>
             ))}
+            <div className="h-10 w-full" /> {/* Bottom spacer for curved corner clearage */}
           </ul>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,12 +10,15 @@ import FoundationSection from './components/FoundationSection';
 import SeniorSection from './components/SeniorSection';
 import AdvantagesSection from './components/AdvantagesSection';
 import ReviewsSection from './components/ReviewsSection';
+import DirectContactSection from './components/DirectContactSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
+  const [showDirectContact, setShowDirectContact] = useState(false);
+
   useEffect(() => {
     // Initialize Lenis
     const lenis = new Lenis({
@@ -48,10 +51,15 @@ export default function App() {
         const wordSpan = document.createElement('span');
         wordSpan.style.display = 'inline-block';
         const innerSpan = document.createElement('span');
-        innerSpan.innerHTML = word + (index < words.length - 1 ? '&nbsp;' : '');
+        innerSpan.innerHTML = word;
         innerSpan.style.display = 'inline-block';
         wordSpan.appendChild(innerSpan);
         heroText.appendChild(wordSpan);
+        
+        // Add a standard breaking space between words for perfect wrap/alignment
+        if (index < words.length - 1) {
+          heroText.appendChild(document.createTextNode(' '));
+        }
       });
 
       const spansToAnimate = heroText.querySelectorAll('span > span');
@@ -111,8 +119,8 @@ export default function App() {
       );
     });
 
-    // Animate grid cards
-    gsap.utils.toArray('.grid > div').forEach((card, i) => {
+    // Animate specific cards (Subject cards and Advantage cards)
+    gsap.utils.toArray('.subject-card, .advantage-card').forEach((card, i) => {
       gsap.fromTo(card,
         { y: 60, opacity: 0 },
         {
@@ -130,6 +138,21 @@ export default function App() {
       );
     });
 
+    // Direct Contact Info card
+    if (showDirectContact) {
+      gsap.fromTo('#direct-contact .direct-contact-card',
+        { y: 60, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#direct-contact',
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }
+
     // Contact section — entire card fades + slides up at once
     gsap.fromTo('#contact .clay-card',
       { y: 60, opacity: 0 },
@@ -137,7 +160,7 @@ export default function App() {
         y: 0, opacity: 1, duration: 1, ease: 'power3.out',
         scrollTrigger: {
           trigger: '#contact',
-          start: 'top 80%',
+          start: 'top 90%', // Reveal slightly earlier for a smoother transition
           toggleActions: 'play none none none',
         },
       }
@@ -160,7 +183,7 @@ export default function App() {
     const navBtns = document.querySelectorAll('nav button');
     navBtns.forEach((btn) => {
       if (btn.innerText.trim().toLowerCase().includes('enrol now')) {
-        btn.addEventListener('click', () => lenis.scrollTo('#contact'));
+        btn.addEventListener('click', () => lenis.scrollTo('#contact', { offset: -70 }));
       }
     });
 
@@ -172,12 +195,22 @@ export default function App() {
 
   return (
     <div className="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
-      <Navbar />
+      <Navbar onContactRequest={() => {
+        setShowDirectContact(true);
+        // We use a small timeout to ensure the DOM has rendered before scrolling
+        setTimeout(() => {
+          const lenis = document.querySelector('html').__lenis; // This is a hacky way if setLenis isn't enough, but I have scrollTo imported in utils
+          import('./utils/lenisInstance').then(({ scrollTo }) => {
+            scrollTo('#direct-contact', { offset: -70 });
+          });
+        }, 50);
+      }} />
       <HeroSection />
       <FoundationSection />
       <SeniorSection />
       <AdvantagesSection />
       <ReviewsSection />
+      {showDirectContact && <DirectContactSection onClose={() => setShowDirectContact(false)} />}
       <ContactSection />
       <Footer />
     </div>

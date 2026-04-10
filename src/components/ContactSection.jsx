@@ -98,16 +98,16 @@ export default function ContactSection() {
   const labelClass = 'text-sm font-bold text-[#54433c] px-2 mb-1 block';
 
   return (
-    <section className="px-6 py-10 md:py-14 bg-[#FBEFEF]" id="contact">
+    <section className="px-4 py-0 md:py-14 bg-[#FBEFEF]" id="contact">
       <div
-        className="max-w-3xl mx-auto p-8 md:p-12 rounded-3xl bg-white border border-[#924a28]/10"
+        className="max-w-3xl mx-auto my-8 md:my-0 p-6 md:p-12 rounded-3xl bg-white border border-[#924a28]/10"
         style={{
           boxShadow: '0 20px 40px rgba(146, 74, 40, 0.05)',
         }}
       >
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-[#54433c]">Start Your Excellence Journey</h2>
-          <p className="text-[#85736c] font-medium text-lg">
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-4xl font-extrabold mb-2 md:mb-3 text-[#54433c]">Start Your Excellence Journey</h2>
+          <p className="text-[#85736c] font-medium text-base md:text-lg">
             Fill out the form below and our educational consultants will contact you shortly.
           </p>
         </div>
@@ -155,18 +155,18 @@ export default function ContactSection() {
           </div>
 
           {/* Message — full width */}
-          <div className="md:col-span-2 space-y-2">
+          <div className="md:col-span-2 space-y-1.5">
             <label className={labelClass}>Message (Optional)</label>
             <textarea
               id="user-message" className={inputClass}
               placeholder="Any specific requirements or preferred timings..."
-              rows="4"
+              rows="3"
               value={userMessage} onChange={(e) => setUserMessage(e.target.value)}
             />
           </div>
 
           {/* Submit */}
-          <div className="md:col-span-2 mt-4">
+          <div className="md:col-span-2 mt-2 md:mt-4">
             <button
               type="submit"
               className="w-full flex items-center justify-center gap-3 bg-[#924a28] text-[#ffffff] py-4 rounded-full text-lg font-bold shadow-xl shadow-[#924a28]/20 hover:opacity-90 transition-all hover:scale-[1.02]"

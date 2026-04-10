@@ -5,14 +5,18 @@ const navLinks = [
   { label: 'Home',      target: '#philosophy' },
   { label: 'Subject',   target: '#subjects'   },
   { label: 'Advantage', target: '#advantages' },
-  { label: 'Contact',   target: '#contact'    },
+  { label: 'Contact',   target: '#direct-contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onContactRequest }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNav = (target) => {
-    scrollTo(target);
+    if (target === '#direct-contact') {
+      onContactRequest();
+    } else {
+      scrollTo(target, { offset: -70 });
+    }
     setMenuOpen(false);
   };
 

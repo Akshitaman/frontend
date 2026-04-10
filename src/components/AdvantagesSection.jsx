@@ -28,7 +28,6 @@ const advantages = [
     img: 'https://illustrations.popsy.co/amber/customer-support.svg',
     title: 'Doubt Support 24/7',
     desc: 'Get your doubts cleared anytime via WhatsApp chat or direct call to your teacher',
-    link: 'Ask a Doubt on WhatsApp →'
   },
   {
     bg: 'bg-[#f5ffe6]',
@@ -42,28 +41,23 @@ export default function AdvantagesSection() {
   return (
     <section className="py-20 md:py-24 px-6 bg-[#FBEFEF]" id="advantages">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 px-4">
           <span className="label-md text-tertiary tracking-[0.1em] font-bold uppercase mb-4 block">
             The Scholar Edge
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-center">
             Why Choose Our Pedagogy
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center text-center">
           {advantages.map((a) => (
-            <div key={a.title} className="flex flex-col items-center">
+            <div key={a.title} className="flex flex-col items-center advantage-card">
               <div className={`oval-container ${a.bg}`}>
                 <img src={a.img} alt={a.title} className="oval-img" />
               </div>
               <h3 className="text-xl font-bold text-[#3b2d28] mb-3 mt-6">{a.title}</h3>
               <p className="text-[#85736c] leading-relaxed">{a.desc}</p>
-              {a.link && (
-                <a href="#" className="font-bold text-[#924a28] hover:underline mt-4 text-sm tracking-wide">
-                  {a.link}
-                </a>
-              )}
             </div>
           ))}
         </div>
