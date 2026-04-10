@@ -98,16 +98,13 @@ export default function ContactSection() {
   const labelClass = 'text-sm font-bold text-[#54433c] px-2 mb-1 block';
 
   return (
-    <section className="px-4 py-0 md:py-14 bg-[#FBEFEF]" id="contact">
+    <section className="px-4 py-8 md:py-14 bg-[#FBEFEF]" id="contact">
       <div
-        className="max-w-3xl mx-auto my-8 md:my-0 p-6 md:p-12 rounded-3xl bg-white border border-[#924a28]/10"
-        style={{
-          boxShadow: '0 20px 40px rgba(146, 74, 40, 0.05)',
-        }}
+        className="max-w-3xl mx-auto my-0 md:my-0 p-6 md:p-12 rounded-3xl bg-white border border-[#924a28]/10 shadow-xl shadow-[#924a28]/05"
       >
         <div className="text-center mb-6 md:mb-8">
           <h2 className="text-2xl md:text-4xl font-extrabold mb-2 md:mb-3 text-[#54433c]">Start Your Excellence Journey</h2>
-          <p className="text-[#85736c] font-medium text-base md:text-lg">
+          <p className="text-sm md:text-lg text-[#85736c] font-medium leading-relaxed">
             Fill out the form below and our educational consultants will contact you shortly.
           </p>
         </div>
@@ -115,7 +112,7 @@ export default function ContactSection() {
         <form id="demo-form" className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
 
           {/* Student Name — full width */}
-          <div className="md:col-span-2 space-y-2">
+          <div className="md:col-span-2 space-y-1.5 md:space-y-2">
             <label className={labelClass}>Student Name *</label>
             <input
               id="student-name" required className={inputClass}
@@ -125,7 +122,7 @@ export default function ContactSection() {
           </div>
 
           {/* Class */}
-          <div className="space-y-2 relative" style={{ zIndex: classOpen ? 40 : 'auto' }}>
+          <div className="space-y-1.5 md:space-y-2 relative" style={{ zIndex: classOpen ? 40 : 'auto' }}>
             <label className={labelClass}>Class *</label>
             <CustomSelect
               id="student-class" placeholder="Select Class"
@@ -135,7 +132,7 @@ export default function ContactSection() {
           </div>
 
           {/* Subject — options depend on selected class */}
-          <div className="space-y-2 relative" style={{ zIndex: subjectOpen ? 40 : 'auto' }}>
+          <div className="space-y-1.5 md:space-y-2 relative" style={{ zIndex: subjectOpen ? 40 : 'auto' }}>
             <label className={labelClass}>Subject *</label>
             <CustomSelect
               id="student-subject" placeholder="Select Subject"
@@ -145,7 +142,7 @@ export default function ContactSection() {
           </div>
 
           {/* Phone Number — required */}
-          <div className="md:col-span-2 space-y-2">
+          <div className="md:col-span-2 space-y-1.5 md:space-y-2">
             <label className={labelClass}>Phone Number *</label>
             <input
               id="phone-number" required className={inputClass}
@@ -155,11 +152,11 @@ export default function ContactSection() {
           </div>
 
           {/* Message — full width */}
-          <div className="md:col-span-2 space-y-1.5">
+          <div className="md:col-span-2 space-y-1 md:space-y-1.5">
             <label className={labelClass}>Message (Optional)</label>
             <textarea
-              id="user-message" className={inputClass}
-              placeholder="Any specific requirements or preferred timings..."
+              id="user-message" className={`${inputClass} !py-3 md:!py-4`}
+              placeholder="Any specific requirements..."
               rows="3"
               value={userMessage} onChange={(e) => setUserMessage(e.target.value)}
             />
@@ -169,12 +166,12 @@ export default function ContactSection() {
           <div className="md:col-span-2 mt-2 md:mt-4">
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 bg-[#924a28] text-[#ffffff] py-4 rounded-full text-lg font-bold shadow-xl shadow-[#924a28]/20 hover:opacity-90 transition-all hover:scale-[1.02]"
+              className="w-full h-[56px] md:h-auto flex items-center justify-center gap-3 bg-[#924a28] text-[#ffffff] py-3 md:py-4 rounded-full text-base md:text-lg font-bold shadow-xl shadow-[#924a28]/20 hover:opacity-90 transition-all hover:scale-[1.02]"
             >
-              <span className="material-symbols-outlined text-[1.25rem]">send</span>
+              <span className="material-symbols-outlined text-[1.1rem] md:text-[1.25rem]">send</span>
               Book Free Demo Class
             </button>
-            <p className="text-center text-sm text-[#a6968f] mt-4 font-medium">
+            <p className="text-center text-[11px] md:text-sm text-[#a6968f] mt-3 md:mt-4 font-medium px-4">
               We respect your privacy. Your details will not be shared.
             </p>
           </div>

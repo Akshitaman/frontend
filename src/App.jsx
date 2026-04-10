@@ -10,14 +10,13 @@ import FoundationSection from './components/FoundationSection';
 import SeniorSection from './components/SeniorSection';
 import AdvantagesSection from './components/AdvantagesSection';
 import ReviewsSection from './components/ReviewsSection';
-import DirectContactSection from './components/DirectContactSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import StickyCTA from './components/StickyCTA';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
-  const [showDirectContact, setShowDirectContact] = useState(false);
 
   useEffect(() => {
     // Initialize Lenis
@@ -138,20 +137,6 @@ export default function App() {
       );
     });
 
-    // Direct Contact Info card
-    if (showDirectContact) {
-      gsap.fromTo('#direct-contact .direct-contact-card',
-        { y: 60, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#direct-contact',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    }
 
     // Contact section — entire card fades + slides up at once
     gsap.fromTo('#contact .clay-card',
@@ -194,25 +179,16 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
-      <Navbar onContactRequest={() => {
-        setShowDirectContact(true);
-        // We use a small timeout to ensure the DOM has rendered before scrolling
-        setTimeout(() => {
-          const lenis = document.querySelector('html').__lenis; // This is a hacky way if setLenis isn't enough, but I have scrollTo imported in utils
-          import('./utils/lenisInstance').then(({ scrollTo }) => {
-            scrollTo('#direct-contact', { offset: -70 });
-          });
-        }, 50);
-      }} />
+    <div className="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container pb-20 md:pb-0">
+      <Navbar />
       <HeroSection />
       <FoundationSection />
       <SeniorSection />
       <AdvantagesSection />
       <ReviewsSection />
-      {showDirectContact && <DirectContactSection onClose={() => setShowDirectContact(false)} />}
       <ContactSection />
       <Footer />
+      <StickyCTA />
     </div>
   );
 }

@@ -169,65 +169,93 @@ function TopicsModal({ modalKey, onClose }) {
 }
 
 export default function FoundationSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const cardWidth = e.target.offsetWidth * 0.78 + 24;
+    const index = Math.round(scrollLeft / cardWidth);
+    if (index !== activeIndex) setActiveIndex(index);
+  };
+
   return (
     <>
-      <section className="py-20 md:py-32 px-6 bg-[#FBEFEF]" id="subjects">
+      <section className="py-8 md:py-32 px-6 bg-[#FBEFEF]" id="subjects">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20">
-            <span className="label-md text-tertiary tracking-[0.1em] font-bold uppercase mb-4 block">
+          <div className="mb-8 md:mb-20">
+            <span className="label-md text-tertiary tracking-[0.1em] font-bold uppercase mb-2 md:mb-4 block text-xs md:text-sm">
               Junior Academy
             </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface">
+            <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight text-on-surface">
               Foundation Years (Classes 5-10)
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {subjects.map((s) => (
-              <div 
-                key={s.title} 
-                className="flip-card subject-card w-full overflow-visible"
-              >
-                <div 
-                  className="flip-animate relative w-full h-[420px]"
-                >
-                  {/* Front */}
-                  <div 
-                    className="absolute inset-0 clay-card p-10 rounded-xl flex flex-col items-start backface-hidden overflow-hidden"
-                    style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-                  >
-                    <div className={`w-16 h-16 rounded-lg ${s.bgClass} mb-8 flex items-center justify-center clay-icon`}>
-                      <span className={`material-symbols-outlined ${s.iconClass} text-3xl`}>{s.icon}</span>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4">{s.title}</h3>
-                    <p className="text-on-surface-variant leading-relaxed flex-1">{s.desc}</p>
-                  </div>
 
-                  {/* Back */}
-                  <div 
-                    className="absolute inset-0 clay-card p-10 rounded-xl flex flex-col items-start backface-hidden overflow-hidden"
-                    style={{ 
-                      backfaceVisibility: 'hidden', 
-                      WebkitBackfaceVisibility: 'hidden',
-                      transform: 'rotateY(180deg)'
-                    }}
-                  >
-                    <h3 className="text-xl font-bold text-on-surface mb-4 border-b pb-2 w-full">{s.title} Topics</h3>
-                    <ul 
-                      className="space-y-2 overflow-y-auto pr-2 custom-scrollbar flex-1"
-                      data-lenis-prevent
+          <div className="relative">
+            {/* Fade Edge */}
+            <div className="md:hidden absolute top-0 right-0 w-16 h-full pointer-events-none bg-gradient-to-r from-transparent to-[#FBEFEF] z-10" />
+
+            <div 
+              onScroll={handleScroll}
+              className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scroll-smooth snap-x snap-mandatory no-scrollbar text-center"
+            >
+              {subjects.map((s) => (
+                <div 
+                  key={s.title} 
+                  className="flex-shrink-0 w-[78vw] md:w-auto snap-start flip-card subject-card overflow-visible"
+                >
+                  <div className="flip-animate relative w-full h-[380px] md:h-[420px]">
+                    {/* Front */}
+                    <div 
+                      className="absolute inset-0 clay-card p-8 md:p-10 rounded-xl flex flex-col items-start backface-hidden overflow-hidden"
+                      style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                     >
-                      {modalData[s.modalKey].topics.map((topic, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-on-surface-variant">
-                          <span className="text-tertiary font-bold mt-0.5 text-xs">✓</span>
-                          <span>{topic}</span>
-                        </li>
-                      ))}
-                      <div className="h-10 w-full" /> {/* Bottom spacer for curved corner clearage */}
-                    </ul>
+                      <div className={`w-12 h-12 md:w-16 md:h-16 rounded-lg ${s.bgClass} mb-6 md:mb-8 flex items-center justify-center clay-icon`}>
+                        <span className={`material-symbols-outlined ${s.iconClass} text-2xl md:text-3xl`}>{s.icon}</span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">{s.title}</h3>
+                      <p className="text-sm md:text-base text-on-surface-variant leading-relaxed text-left flex-1">{s.desc}</p>
+                    </div>
+
+                    {/* Back */}
+                    <div 
+                      className="absolute inset-0 clay-card p-8 md:p-10 rounded-xl flex flex-col items-start backface-hidden overflow-hidden"
+                      style={{ 
+                        backfaceVisibility: 'hidden', 
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)'
+                      }}
+                    >
+                      <h3 className="text-lg md:text-xl font-bold text-on-surface mb-3 md:mb-4 border-b pb-2 w-full text-left">{s.title} Topics</h3>
+                      <ul 
+                        className="space-y-2 overflow-y-auto pr-2 custom-scrollbar flex-1 w-full text-left"
+                        data-lenis-prevent
+                      >
+                        {modalData[s.modalKey].topics.map((topic, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs md:text-sm text-on-surface-variant">
+                            <span className="text-tertiary font-bold mt-0.5 text-[10px] md:text-xs">✓</span>
+                            <span>{topic}</span>
+                          </li>
+                        ))}
+                        <div className="h-10 w-full" />
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Indicators */}
+          <div className="md:hidden mt-6 flex flex-col items-center">
+            <div className="flex gap-2">
+              {subjects.map((_, i) => (
+                <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === i ? 'w-6 bg-[#924a28]' : 'w-1.5 bg-[#924a28]/20'}`} />
+              ))}
+            </div>
+            <p className="text-[12px] text-[#85736c]/60 mt-3 flex items-center gap-1 font-medium">
+              Swipe to see more <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </p>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const baseReviews = [
   {
@@ -31,93 +31,84 @@ const baseReviews = [
 const reviews = Array.from({ length: 16 }, () => baseReviews).flat();
 
 export default function ReviewsSection() {
-  const wrapperRef = useRef(null);
-  const currentNudge = useRef(-2000);
-
-  const nudgeMarquee = (dir) => {
-    const wrapper = wrapperRef.current;
-    const content = wrapper?.querySelector('.marquee-content');
-    const card = wrapper?.querySelector('.review-card');
-    if (!wrapper || !content || !card) return;
-
-    const cardWidth = card.offsetWidth;
-    const gapStr = window.getComputedStyle(content).gap;
-    let gap = parseFloat(gapStr) || 0;
-    if (gapStr.includes('rem')) gap = parseFloat(gapStr) * 16;
-
-    const step = cardWidth + gap;
-    currentNudge.current += dir * step;
-    if (currentNudge.current > 0) currentNudge.current = 0;
-    if (currentNudge.current < -8000) currentNudge.current = -8000;
-
-    wrapper.style.transform = `translateX(${currentNudge.current}px)`;
-  };
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-20 md:py-32 bg-[#f0ece6] overflow-x-hidden max-w-[100vw]" id="reviews">
-      <div className="max-w-[1400px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-center md:items-end gap-8 px-6 md:px-12">
-        {/* Left */}
-        <div className="text-center md:text-left w-full md:w-auto">
-          <span className="text-orange-500 tracking-widest font-bold uppercase mb-4 block text-[13px]">
-            SUCCESS STORIES
-          </span>
-          <h2
-            className="text-[#1a1a2e] tracking-tight text-[clamp(26px,6vw,36px)] lg:text-5xl"
-            style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, lineHeight: 1.1 }}
-          >
-            Voted Most Trusted<br />Coaching Center
-          </h2>
-        </div>
-        {/* Arrow buttons — desktop only */}
-        <div className="hidden md:flex gap-4">
-          <button
-            className="w-12 h-12 rounded-full border border-gray-400 bg-transparent flex items-center justify-center hover:bg-[#1a1a2e] text-[#1a1a2e] hover:text-white transition-all duration-300"
-            onClick={() => nudgeMarquee(1)}
-          >
-            <span className="material-symbols-outlined font-light">arrow_back</span>
-          </button>
-          <button
-            className="w-12 h-12 rounded-full border border-gray-400 bg-transparent flex items-center justify-center hover:bg-[#1a1a2e] text-[#1a1a2e] hover:text-white transition-all duration-300"
-            onClick={() => nudgeMarquee(-1)}
-          >
-            <span className="material-symbols-outlined font-light">arrow_forward</span>
-          </button>
-        </div>
+    <section className="py-8 md:py-32 bg-[#f0ece6] overflow-x-hidden max-w-[100vw]" id="reviews">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 text-center md:text-left mb-8 md:mb-16">
+        <span className="text-orange-500 tracking-widest font-bold uppercase mb-2 md:mb-4 block text-[11px] md:text-[13px]">
+          SUCCESS STORIES
+        </span>
+        <h2
+          className="text-[#1a1a2e] tracking-tight text-3xl md:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-2 md:mb-4"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
+          What Our Students Say
+        </h2>
+        <p className="text-[#85736c] text-sm md:text-lg font-medium">
+          Trusted by 5000+ students and parents
+        </p>
       </div>
 
-      <div className="marquee-container relative pb-8 max-w-[1600px] mx-auto">
-        <div
-          className="marquee-nudge-wrapper"
-          ref={wrapperRef}
-          style={{ transform: 'translateX(-2010px)' }}
-        >
-          <div className="marquee-content">
-            {reviews.map((r, i) => (
-              <div key={i} className="review-card">
-                <div className="flex gap-[2px] text-[#facc15] mb-6 text-xl">
-                  {[...Array(5)].map((_, si) => <span key={si}>★</span>)}
-                </div>
-                <p
-                  className="text-gray-600 italic leading-relaxed mb-8 flex-grow"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                >
-                  {r.quote}
-                </p>
-                <div className="flex items-center gap-4 mt-auto">
-                  <img
-                    className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full object-cover"
-                    src={r.avatar}
-                    alt="Avatar"
-                  />
-                  <div>
-                    <h4 className="review-author text-[#1a1a2e] text-[17px] leading-snug">{r.author}</h4>
-                    <p className="text-[13px] text-gray-500 mt-[2px]">{r.role}</p>
-                  </div>
-                </div>
+      {/* Desktop Grid */}
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-12">
+        {baseReviews.map((r, i) => (
+          <div 
+            key={i} 
+            className="bg-white rounded-[2rem] p-8 md:p-10 flex flex-col shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-black/5"
+          >
+            <div className="flex gap-[2px] text-[#facc15] mb-6 text-xl">
+              {[...Array(5)].map((_, si) => <span key={si} className="material-symbols-outlined fill-current" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>)}
+            </div>
+            <p
+              className="text-gray-600 italic leading-relaxed mb-8 flex-grow text-base"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              {r.quote}
+            </p>
+            <div className="flex items-center gap-4 mt-auto">
+              <img
+                className="w-[48px] h-[48px] lg:w-[56px] lg:h-[56px] rounded-full object-cover shadow-sm"
+                src={r.avatar}
+                alt={r.author}
+              />
+              <div>
+                <h4 className="review-author text-[#1a1a2e] text-lg font-bold leading-snug">{r.author}</h4>
+                <p className="text-[13px] text-gray-500 mt-[2px] font-medium">{r.role}</p>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+
+      {/* Mobile Accordion */}
+      <div className="md:hidden space-y-3 px-6 pb-6">
+        {baseReviews.map((r, i) => (
+          <div key={i} className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm">
+            <button 
+              onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
+              className="w-full flex items-center justify-between p-5 text-left"
+            >
+              <div className="flex items-center gap-3">
+                <img src={r.avatar} className="w-8 h-8 rounded-full object-cover" alt="" />
+                <span className="font-bold text-[#1a1a2e] text-sm">{r.author}</span>
+              </div>
+              <span className="material-symbols-outlined text-gray-400">
+                {openIndex === i ? 'remove' : 'add'}
+              </span>
+            </button>
+            <div 
+              className={`transition-all duration-300 ease-in-out ${openIndex === i ? 'max-h-96 opacity-100 px-5 pb-6' : 'max-h-0 opacity-0 px-5 pb-0'}`}
+              style={{ overflow: 'hidden' }}
+            >
+              <div className="flex gap-[2px] text-[#facc15] mb-3 text-xs">
+                {[...Array(5)].map((_, si) => <span key={si}>★</span>)}
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed italic mb-4">{r.quote}</p>
+              <p className="text-[11px] text-gray-500 font-medium uppercase tracking-wider">{r.role}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const scienceSubjects = [
   {
     icon: 'experiment',
@@ -152,43 +154,110 @@ function StreamCard({ icon, bg, iconColor, title, desc, topics }) {
 }
 
 export default function SeniorSection() {
+  const [scienceIndex, setScienceIndex] = useState(0);
+  const [commerceIndex, setCommerceIndex] = useState(0);
+
+  const handleScienceScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const cardWidth = e.target.offsetWidth * 0.78 + 24;
+    const index = Math.round(scrollLeft / cardWidth);
+    if (index !== scienceIndex) setScienceIndex(index);
+  };
+
+  const handleCommerceScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const cardWidth = e.target.offsetWidth * 0.78 + 24;
+    const index = Math.round(scrollLeft / cardWidth);
+    if (index !== commerceIndex) setCommerceIndex(index);
+  };
+
   return (
-    <section className="py-20 md:py-32 px-6 bg-surface" id="seniors">
+    <section className="py-8 md:py-32 px-6 bg-surface" id="seniors">
       <div className="max-w-7xl mx-auto">
-        <div className="space-y-32">
+        <div className="space-y-16 md:space-y-32">
           {/* Science Stream */}
           <div>
-            <div className="mb-12">
-              <span className="label-md text-tertiary tracking-[0.15em] font-bold uppercase mb-3 block">
+            <div className="mb-8 md:mb-12">
+              <span className="label-md text-tertiary tracking-[0.15em] font-bold uppercase mb-2 md:mb-3 block text-xs md:text-sm">
                 Class 11-12 Focus
               </span>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-on-surface mb-4">
+              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-on-surface mb-3 md:mb-4">
                 Science Stream
               </h2>
-              <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+              <p className="text-base md:text-lg text-on-surface-variant max-w-2xl leading-relaxed">
                 Advanced concepts and rigorous preparation for engineering and medical aspirations with a structured modular curriculum.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {scienceSubjects.map((s) => <StreamCard key={s.title} {...s} />)}
+
+            <div className="relative">
+              {/* Fade Edge */}
+              <div className="md:hidden absolute top-0 right-0 w-16 h-full pointer-events-none bg-gradient-to-r from-transparent to-white z-10" />
+              
+              <div 
+                onScroll={handleScienceScroll}
+                className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scroll-smooth snap-x snap-mandatory no-scrollbar"
+              >
+                {scienceSubjects.map((s) => (
+                  <div key={s.title} className="flex-shrink-0 w-[78vw] md:w-auto snap-start">
+                    <StreamCard {...s} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Indicators */}
+            <div className="md:hidden mt-4 flex flex-col items-center">
+              <div className="flex gap-2">
+                {scienceSubjects.map((_, i) => (
+                  <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${scienceIndex === i ? 'w-6 bg-[#924a28]' : 'w-1.5 bg-[#924a28]/20'}`} />
+                ))}
+              </div>
+              <p className="text-[12px] text-[#85736c]/60 mt-3 flex items-center gap-1 font-medium">
+                Swipe to see more <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </p>
             </div>
           </div>
 
           {/* Commerce Stream */}
           <div>
-            <div className="mb-12 text-right">
-              <span className="label-md text-tertiary tracking-[0.15em] font-bold uppercase mb-3 block">
+            <div className="mb-8 md:mb-12 text-left md:text-right">
+              <span className="label-md text-tertiary tracking-[0.15em] font-bold uppercase mb-2 md:mb-3 block text-xs md:text-sm">
                 Professional Path
               </span>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-on-surface mb-4">
+              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-on-surface mb-3 md:mb-4">
                 Commerce Stream
               </h2>
-              <p className="text-lg text-on-surface-variant ml-auto max-w-2xl leading-relaxed">
+              <p className="text-base md:text-lg text-on-surface-variant ml-auto max-w-2xl leading-relaxed">
                 Building the foundation for business, finance, and economic leadership through real-world case studies and analytical training.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {commerceSubjects.map((s) => <StreamCard key={s.title} {...s} />)}
+
+            <div className="relative">
+              {/* Fade Edge */}
+              <div className="md:hidden absolute top-0 right-0 w-16 h-full pointer-events-none bg-gradient-to-r from-transparent to-white z-10" />
+
+              <div 
+                onScroll={handleCommerceScroll}
+                className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scroll-smooth snap-x snap-mandatory no-scrollbar"
+              >
+                {commerceSubjects.map((s) => (
+                  <div key={s.title} className="flex-shrink-0 w-[78vw] md:w-auto snap-start">
+                    <StreamCard {...s} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Indicators */}
+            <div className="md:hidden mt-4 flex flex-col items-center">
+              <div className="flex gap-2">
+                {commerceSubjects.map((_, i) => (
+                  <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${commerceIndex === i ? 'w-6 bg-[#924a28]' : 'w-1.5 bg-[#924a28]/20'}`} />
+                ))}
+              </div>
+              <p className="text-[12px] text-[#85736c]/60 mt-3 flex items-center gap-1 font-medium">
+                Swipe to see more <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </p>
             </div>
           </div>
         </div>
